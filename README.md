@@ -30,19 +30,32 @@ python local/main.py
 ```
 
 ## Deploying to AWS
+> Failing for following error, leaving for now
+> ```
+> 2024-08-17T04:45:15.971Z
+> [ERROR] Runtime.ImportModuleError: Unable to > import module 'route1_handler': No module > named 'pydantic_core._pydantic_core'
+> Traceback (most recent call last):
+```
+
 
 1. Install the AWS CDK CLI: `npm install -g aws-cdk`
 2. Configure your AWS credentials
 3. Navigate to the `infra/aws` directory
-4. Run `cdk deploy`
-
-Note: AWS Lambda will use the `requirements.txt` file to install dependencies in the cloud environment. The local Conda environment is not used for deployment.
+4. Install the required AWS CDK packages:
+```
+pip install -r requirements-aws.txt
+```
+5. Deploy the stack:
+```
+cdk deploy
+```
+Note: Ensure you're in the Conda environment (`conda activate fastapi-serverless`) before running these commands.
 
 ## Deploying to Azure
 
 1. Install the Azure Functions Core Tools
 2. Navigate to the `infra/azure/functions` directory
-3. Run `func azure functionapp publish <YourFunctionAppName>`
+3. Run `func azure functionapp publish fastapi-serverless-app`
 
 Note: This setup uses Azure Functions with FastAPI directly, without additional wrapper libraries.
 

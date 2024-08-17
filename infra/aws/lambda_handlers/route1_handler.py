@@ -1,8 +1,23 @@
+import json
 from mangum import Mangum
-from fastapi import FastAPI
-from app.routes import route1
 
-app = FastAPI()
-app.include_router(route1.router)
 
+def create_app():
+    from fastapi import FastAPI
+
+    app = FastAPI()
+
+    @app.get("/route1")
+    async def root():
+        return {"message": "Hello from Route 1"}
+
+    return app
+
+
+# Initialize the FastAPI app outside the handler
+app = create_app()
 handler = Mangum(app)
+
+
+def lambda_handler(event, context):
+    return handler(event, context)
