@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest
+aws-cdk-lib
+constructs
