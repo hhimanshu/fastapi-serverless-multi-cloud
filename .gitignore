@@ -3,3 +3,7 @@ venv/
 __pycache__/
 .pytest_cache/
 cdk.out/
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
